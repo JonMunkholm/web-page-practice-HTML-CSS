@@ -1,0 +1,152 @@
+/*
+* {
+    border: 1px solid red;
+}
+*/
+
+/*Misc styling*/
+nav, section > section > article {
+  background: rgba(250,250,250,.2);
+  backdrop-filter: saturate(180%) blur(30px);
+}
+
+body {
+    background: rgb(68,185,187);
+    background: linear-gradient(125deg, rgba(26, 29, 29, 0.504) 36%, rgba(168,182,189,1) 58%, rgba(255,255,255,1) 100%);
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+ }
+
+ a:hover {
+  color: rgb(52, 95, 238);
+ }
+/* Main grid rules */
+.content-grid {
+  --padding-inline: 1rem;
+  --content-max-width: 900px;
+  --breakout-max-width: 1200px;
+
+  --breakout-size: calc(
+    (var(--breakout-max-width) - var(--content-max-width)) / 2
+  );
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--padding-inline), 1fr)
+    [breakout-start] minmax(0, var(--breakout-size))
+    [content-start] min(
+      100% - (var(--padding-inline) * 2),
+      var(--content-max-width)
+    )
+    [content-end]
+    minmax(0, var(--breakout-size)) [breakout-end]
+    minmax(var(--padding-inline), 1fr) [full-width-end];
+}
+
+.content-grid > :not(.breakout, .full-width) {
+  grid-column: content;
+}
+
+.content-grid > .breakout {
+  grid-column: breakout;
+}
+
+.content-grid > .full-width {
+  grid-column: full-width;
+  display: grid;
+  grid-template-columns: inherit;
+}
+/* additional layout rules*/
+footer, ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  width: auto;
+  align-items: center;
+}
+
+nav, section > section > article {
+  border-radius: 1.25rem;
+  margin-top: .75rem;
+  margin-bottom: .75rem;
+}
+
+/* img rules*/
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
+  border-radius: 1.25rem;
+}
+
+img.fit {
+  aspect-ratio: 1/1;
+}
+
+img.mid {
+  max-height: 30svh;
+}
+
+img.logo {
+  border-radius: .25rem;
+}
+img.advert{
+  opacity: .65;
+}
+.aspect {
+  aspect-ratio: 1/1;
+}
+
+article > img {
+  justify-self: center;
+}
+
+
+footer > div > img {
+  height: 1.25rem;
+}
+
+/*cluster rules*/
+.cluster {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.cluster > section {
+  grid-column: span 1;
+}
+.cluster > section > article {
+  width: 90%;
+  margin: auto;
+  height: 100%;
+}
+article {
+  display: grid;
+}
+
+
+/* centers some of the img's on the page*/
+header, section {
+  text-align: center;
+}
+
+
+
+
+/*Make sight more responsive*/
+@media only screen and (max-width: 700px) {
+  .cluster > section {
+    grid-column: span 3;
+  }
+  img.fit{
+    max-height: 30svh;
+  }  
+}
+
+
